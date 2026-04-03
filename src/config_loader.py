@@ -18,6 +18,8 @@ class Config:
     charts: Dict[str, bool]
 
 def load_config(path: str | Path = "config.yaml") -> Config:
+    if ".." in str(path):
+        raise Exception("Invalid file path")
     with open(path, "r", encoding="utf-8") as f:
         raw = yaml.safe_load(f)
 
